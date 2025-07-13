@@ -5,11 +5,10 @@ Follow these steps to set up and run the Laravel CMS API on your local system.
 
 ### ✅ Requirements
 
-* PHP >= 8.1
+* PHP >= 8.2
 * Composer
 * MySQL or MariaDB
-* Laravel 10
-* Node.js & npm (for optional frontend build)
+* Laravel 11
 
 ---
 
@@ -51,10 +50,7 @@ php artisan db:seed
 
 | Seeder Class                 | Description                                              |
 | ---------------------------- | -------------------------------------------------------- |
-| `RoleSeeder`                 | Seeds roles: `Admin`, `Author`                           |
 | `UserSeeder`                 | Creates one Admin and one Author user                    |
-| `CategorySeeder`             | Seeds some default categories                            |
-| `ArticleSeeder` *(optional)* | Creates sample articles (linked to users and categories) |
 
 You can run all together using:
 
