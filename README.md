@@ -1,32 +1,35 @@
-# 📝 Laravel CMS API Documentation
+# 📜 Laravel CMS API Documentation
 
 ## 🔗 API Endpoint List
 
 **Base URL**: `http://127.0.0.1:8000/api`
 
-| Method        | Endpoint                      | Description                              |
-|---------------|-------------------------------|------------------------------------------|
-| `POST`        | `/login`                      | Login and get access token               |
-| `POST`        | `/logout`                     | Logout the authenticated user            |
-| `GET`         | `/profile`                    | Get current authenticated user's profile |
-| `GET`         | `/categories`                 | List all categories (Admin only)         |
-| `POST`        | `/categories`                 | Create a new category (Admin only)       |
-| `GET`         | `/categories/{category}`      | Get a specific category by ID (Admin only) |
-| `PUT|PATCH`   | `/categories/{category}`      | Update a category (Admin only)           |
-| `DELETE`      | `/categories/{category}`      | Delete a category (Admin only)           |
-| `GET`         | `/articles`                   | List articles (Admin: all, Author: own)  |
-| `POST`        | `/articles`                   | Create a new article                     |
-| `GET`         | `/articles/{article}`         | Get article details (Admin: all, Author: own) |
-| `PUT|PATCH`   | `/articles/{article}`         | Update article (Admin: all, Author: own only) |
-| `DELETE`      | `/articles/{article}`         | Delete article (Admin: all, Author: own only) |
+| Method       | Endpoint                 | Description                                   |
+| ------------ | ------------------------ | --------------------------------------------- |
+| `POST`       | `/login`                 | Login and get access token                    |
+| `POST`       | `/logout`                | Logout the authenticated user                 |
+| `GET`        | `/profile`               | Get current authenticated user's profile      |
+| `GET`        | `/categories`            | List all categories (Admin only)              |
+| `POST`       | `/categories`            | Create a new category (Admin only)            |
+| `GET`        | `/categories/{category}` | Get a specific category by ID (Admin only)    |
+| `PUT\|PATCH` | `/categories/{category}` | Update a category (Admin only)                |
+| `DELETE`     | `/categories/{category}` | Delete a category (Admin only)                |
+| `GET`        | `/articles`              | List articles (Admin: all, Author: own)       |
+| `POST`       | `/articles`              | Create a new article                          |
+| `GET`        | `/articles/{article}`    | Get article details (Admin: all, Author: own) |
+| `PUT\|PATCH` | `/articles/{article}`    | Update article (Admin: all, Author: own only) |
+| `DELETE`     | `/articles/{article}`    | Delete article (Admin: all, Author: own only) |
 
+---
 
 ## 🔐 Authentication APIs
 
-### 🔸 POST `/login`  
+### 🔸 POST `/login`
+
 **Public** – Login and get an access token.
 
 **Request**
+
 ```json
 {
   "email": "admin@example.com",
@@ -35,6 +38,7 @@
 ```
 
 **Response**
+
 ```json
 {
   "user": { ... },
@@ -46,15 +50,18 @@
 
 ---
 
-### 🔸 POST `/logout`  
+### 🔸 POST `/logout`
+
 **Protected** – Logs out the authenticated user.
 
 **Header**
+
 ```
 Authorization: Bearer {token}
 ```
 
 **Response**
+
 ```json
 {
   "status": true,
@@ -64,10 +71,12 @@ Authorization: Bearer {token}
 
 ---
 
-### 🔸 GET `/profile`  
+### 🔸 GET `/profile`
+
 **Protected** – Fetch logged-in user's profile.
 
 **Response**
+
 ```json
 {
   "status": true,
@@ -78,18 +87,22 @@ Authorization: Bearer {token}
 
 ---
 
-## 📂 Category APIs  
+## 📂 Category APIs
+
 🔐 **Only Accessible by Admin**
 
-### GET `/categories`  
+### GET `/categories`
+
 Fetch all categories.
 
 ---
 
-### POST `/categories`  
+### POST `/categories`
+
 Create a category.
 
 **Request**
+
 ```json
 {
   "name": "Technology"
@@ -98,15 +111,18 @@ Create a category.
 
 ---
 
-### GET `/categories/{id}`  
+### GET `/categories/{id}`
+
 Fetch a single category by ID.
 
 ---
 
-### PUT `/categories/{id}`  
+### PUT `/categories/{id}`
+
 Update a category.
 
 **Request**
+
 ```json
 {
   "name": "Updated Name"
@@ -115,29 +131,34 @@ Update a category.
 
 ---
 
-### DELETE `/categories/{id}`  
+### DELETE `/categories/{id}`
+
 Delete a category.
 
 ---
 
 ## 📰 Article APIs
 
-### 🔸 GET `/articles`  
-🔒 Authenticated  
-👤 Admin: View all articles  
+### 🔸 GET `/articles`
+
+🔒 Authenticated
+👤 Admin: View all articles
 👤 Author: View own articles only
 
 **Query Filters (optional):**
-- `status`: `Draft`, `Published`, `Archived`  
-- `category`: category name  
-- `from` and `to`: published date range
+
+* `status`: `Draft`, `Published`, `Archived`
+* `category`: category name
+* `from` and `to`: published date range
 
 **Example**
+
 ```
 /articles?status=Published&category=Tech&from=2025-01-01&to=2025-12-31
 ```
 
 **Success Response**
+
 ```json
 {
   "status": true,
@@ -147,6 +168,7 @@ Delete a category.
 ```
 
 **Author Unauthorized Response (no own articles):**
+
 ```json
 {
   "status": false,
@@ -156,12 +178,14 @@ Delete a category.
 
 ---
 
-### 🔸 POST `/articles`  
-🔒 Authenticated  
-👤 Admin: ✅  
+### 🔸 POST `/articles`
+
+🔒 Authenticated
+👤 Admin: ✅
 👤 Author: ✅ (assigned as `author_id` automatically)
 
 **Request**
+
 ```json
 {
   "title": "AI in 2025",
@@ -173,6 +197,7 @@ Delete a category.
 ```
 
 **Response**
+
 ```json
 {
   "status": true,
@@ -182,12 +207,14 @@ Delete a category.
 
 ---
 
-### 🔸 GET `/articles/{id}`  
-🔒 Authenticated  
-👤 Admin: Can view any article  
+### 🔸 GET `/articles/{id}`
+
+🔒 Authenticated
+👤 Admin: Can view any article
 👤 Author: Can view own articles only
 
 **Unauthorized Response**
+
 ```json
 {
   "status": false,
@@ -197,13 +224,15 @@ Delete a category.
 
 ---
 
-### 🔸 PUT `/articles/{id}`  
-🔒 Authenticated  
-👤 Admin: Can update any article  
-👤 Author: Can update own articles only  
+### 🔸 PUT `/articles/{id}`
+
+🔒 Authenticated
+👤 Admin: Can update any article
+👤 Author: Can update own articles only
 ❌ Author cannot update Admin’s articles
 
 **Request**
+
 ```json
 {
   "title": "Updated Title",
@@ -214,6 +243,7 @@ Delete a category.
 ```
 
 **Success Response**
+
 ```json
 {
   "status": true,
@@ -223,6 +253,7 @@ Delete a category.
 ```
 
 **Invalid Category Example**
+
 ```json
 {
   "message": "The given data was invalid.",
@@ -234,13 +265,15 @@ Delete a category.
 
 ---
 
-### 🔸 DELETE `/articles/{id}`  
-🔒 Authenticated  
-👤 Admin: Can delete any article  
-👤 Author: Can delete own articles only  
+### 🔸 DELETE `/articles/{id}`
+
+🔒 Authenticated
+👤 Admin: Can delete any article
+👤 Author: Can delete own articles only
 ❌ Author cannot delete Admin’s articles
 
 **Unauthorized Response**
+
 ```json
 {
   "status": false,
@@ -249,6 +282,7 @@ Delete a category.
 ```
 
 **Success**
+
 ```json
 {
   "status": true,
@@ -261,6 +295,7 @@ Delete a category.
 ## ⚠️ Common Error Responses
 
 ### 401 Unauthorized (no token or invalid)
+
 ```json
 {
   "status": false,
@@ -269,6 +304,7 @@ Delete a category.
 ```
 
 ### 403 Forbidden (policy denied)
+
 ```json
 {
   "status": false,
@@ -277,6 +313,7 @@ Delete a category.
 ```
 
 ### 404 Not Found
+
 ```json
 {
   "status": false,
@@ -288,23 +325,141 @@ Delete a category.
 
 ## Background AI Jobs (Auto)
 
-- `GenerateSlugJob` – auto-generates slug from article title  
-- `GenerateSummaryJob` – auto-generates summary  
-These run automatically on article creation and update.
+* `GenerateSlugJob` – auto-generates slug from article title
+* `GenerateSummaryJob` – auto-generates summary
+  These run automatically on article creation and update.
 
 ---
 
 ## ✅ Role Permissions Summary
 
-| Endpoint                   | Admin | Author |
-|----------------------------|:-----:|:------:|
-| POST /login                | ✅    | ✅     |
-| POST /logout               | ✅    | ✅     |
-| GET /profile               | ✅    | ✅     |
-| GET/POST/PUT/DEL /categories | ✅  | ❌     |
-| GET /articles              | ✅ all | ✅ own only |
-| POST /articles             | ✅    | ✅     |
-| GET /articles/{id}         | ✅    | ✅ own only |
-| PUT /articles/{id}         | ✅    | ✅ own only |
-| DELETE /articles/{id}      | ✅    | ✅ own only, ❌ Admin’s |
+| Endpoint                     | Admin |         Author        |
+| ---------------------------- | :---: | :-------------------: |
+| POST /login                  |   ✅   |           ✅           |
+| POST /logout                 |   ✅   |           ✅           |
+| GET /profile                 |   ✅   |           ✅           |
+| GET/POST/PUT/DEL /categories |   ✅   |           ❌           |
+| GET /articles                | ✅ all |       ✅ own only      |
+| POST /articles               |   ✅   |           ✅           |
+| GET /articles/{id}           |   ✅   |       ✅ own only      |
+| PUT /articles/{id}           |   ✅   |       ✅ own only      |
+| DELETE /articles/{id}        |   ✅   | ✅ own only, ❌ Admin’s |
 
+---
+
+## 🚀 Project Setup Instructions
+
+Follow these steps to set up and run the Laravel CMS API on your local system.
+
+### ✅ Requirements
+
+* PHP >= 8.1
+* Composer
+* MySQL or MariaDB
+* Laravel 10
+* Node.js & npm (for optional frontend build)
+
+---
+
+### 🔧 Installation Steps
+
+```bash
+# 1. Clone the project
+git clone https://github.com/your-username/laravel-cms-api.git
+
+# 2. Move into project directory
+cd laravel-cms-api
+
+# 3. Install PHP dependencies
+composer install
+
+# 4. Copy the example environment file
+cp .env.example .env
+
+# 5. Generate application key
+php artisan key:generate
+
+# 6. Configure your .env database settings
+# DB_DATABASE=your_database
+# DB_USERNAME=your_username
+# DB_PASSWORD=your_password
+
+# 7. Run migrations
+php artisan migrate
+
+# 8. Seed the database with test users and categories
+php artisan db:seed
+```
+
+---
+
+## 🌱 Seeders Created
+
+> These seeders are included to quickly populate the database with roles, users, and some dummy categories/articles for testing.
+
+| Seeder Class                 | Description                                              |
+| ---------------------------- | -------------------------------------------------------- |
+| `RoleSeeder`                 | Seeds roles: `Admin`, `Author`                           |
+| `UserSeeder`                 | Creates one Admin and one Author user                    |
+| `CategorySeeder`             | Seeds some default categories                            |
+| `ArticleSeeder` *(optional)* | Creates sample articles (linked to users and categories) |
+
+You can run all together using:
+
+```bash
+php artisan db:seed
+```
+
+Or run a specific one:
+
+```bash
+php artisan db:seed --class=UserSeeder
+```
+
+---
+
+### 👤 Default Users
+
+| Role   | Email                                           | Password |
+| ------ | ----------------------------------------------- | -------- |
+| Admin  | [admin@example.com](mailto:admin@example.com)   | password |
+| Author | [author@example.com](mailto:author@example.com) | password |
+
+You can log in with these users via `/api/login`.
+
+---
+
+### ▶️ Run the Development Server
+
+```bash
+php artisan serve
+```
+
+> The API will be available at:
+> `http://127.0.0.1:8000/api`
+
+Use Postman or any API tool to start making requests.
+
+---
+
+### 🔪 Optional: Run Tests
+
+```bash
+php artisan test
+```
+
+---
+
+### 📁 Storage Link (if needed for file uploads)
+
+```bash
+php artisan storage:link
+```
+
+---
+
+## ✅ Ready!
+
+Now your Laravel CMS API project is up and running with seeded roles, users, and categories.
+
+Feel free to explore, extend, and customize it for your own needs!
