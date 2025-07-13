@@ -17,7 +17,7 @@ Follow these steps to set up and run the Laravel CMS API on your local system.
 
 ```bash
 # 1. Clone the project
-git clone https://github.com/your-username/laravel-cms-api.git
+git clone https://github.com/AbulQasim123/Laravel-CMS-API.git
 
 # 2. Move into project directory
 cd laravel-cms-api
