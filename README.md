@@ -1,11 +1,25 @@
 # 📝 Laravel CMS API Documentation
 
-## 📌 Base URL
-```
-http://your-domain.com/api
-```
+## 🔗 API Endpoint List
 
----
+**Base URL**: `http://127.0.0.1:8000/api`
+
+| Method        | Endpoint                      | Description                              |
+|---------------|-------------------------------|------------------------------------------|
+| `POST`        | `/login`                      | Login and get access token               |
+| `POST`        | `/logout`                     | Logout the authenticated user            |
+| `GET`         | `/profile`                    | Get current authenticated user's profile |
+| `GET`         | `/categories`                 | List all categories (Admin only)         |
+| `POST`        | `/categories`                 | Create a new category (Admin only)       |
+| `GET`         | `/categories/{category}`      | Get a specific category by ID (Admin only) |
+| `PUT|PATCH`   | `/categories/{category}`      | Update a category (Admin only)           |
+| `DELETE`      | `/categories/{category}`      | Delete a category (Admin only)           |
+| `GET`         | `/articles`                   | List articles (Admin: all, Author: own)  |
+| `POST`        | `/articles`                   | Create a new article                     |
+| `GET`         | `/articles/{article}`         | Get article details (Admin: all, Author: own) |
+| `PUT|PATCH`   | `/articles/{article}`         | Update article (Admin: all, Author: own only) |
+| `DELETE`      | `/articles/{article}`         | Delete article (Admin: all, Author: own only) |
+
 
 ## 🔐 Authentication APIs
 
@@ -272,7 +286,7 @@ Delete a category.
 
 ---
 
-## 🧠 Background AI Jobs (Auto)
+## Background AI Jobs (Auto)
 
 - `GenerateSlugJob` – auto-generates slug from article title  
 - `GenerateSummaryJob` – auto-generates summary  
