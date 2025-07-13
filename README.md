@@ -1,3 +1,103 @@
+
+## 🚀 Project Setup Instructions
+
+Follow these steps to set up and run the Laravel CMS API on your local system.
+
+### ✅ Requirements
+
+* PHP >= 8.1
+* Composer
+* MySQL or MariaDB
+* Laravel 10
+* Node.js & npm (for optional frontend build)
+
+---
+
+### 🔧 Installation Steps
+
+```bash
+# 1. Clone the project
+git clone https://github.com/your-username/laravel-cms-api.git
+
+# 2. Move into project directory
+cd laravel-cms-api
+
+# 3. Install PHP dependencies
+composer install
+
+# 4. Copy the example environment file
+cp .env.example .env
+
+# 5. Generate application key
+php artisan key:generate
+
+# 6. Configure your .env database settings
+# DB_DATABASE=your_database
+# DB_USERNAME=your_username
+# DB_PASSWORD=your_password
+
+# 7. Run migrations
+php artisan migrate
+
+# 8. Seed the database with test users and categories
+php artisan db:seed
+```
+
+---
+
+## Seeders Created
+
+> These seeders are included to quickly populate the database with roles, users, and some dummy categories/articles for testing.
+
+| Seeder Class                 | Description                                              |
+| ---------------------------- | -------------------------------------------------------- |
+| `RoleSeeder`                 | Seeds roles: `Admin`, `Author`                           |
+| `UserSeeder`                 | Creates one Admin and one Author user                    |
+| `CategorySeeder`             | Seeds some default categories                            |
+| `ArticleSeeder` *(optional)* | Creates sample articles (linked to users and categories) |
+
+You can run all together using:
+
+```bash
+php artisan db:seed
+```
+
+Or run a specific one:
+
+```bash
+php artisan db:seed --class=UserSeeder
+```
+
+---
+
+### 👤 Default Users
+
+| Role   | Email                                           | Password |
+| ------ | ----------------------------------------------- | -------- |
+| Admin  | [admin@example.com](mailto:admin@example.com)   | password |
+| Author | [author@example.com](mailto:author@example.com) | password |
+
+You can log in with these users via `/api/login`.
+
+---
+
+###  Run the Development Server
+
+```bash
+php artisan serve
+```
+
+> The API will be available at:
+> `http://127.0.0.1:8000/api`
+
+Use Postman or any API tool to start making requests.
+
+---
+
+## ✅ Ready!
+
+Now your Laravel CMS API project is up and running with seeded roles, users, and categories.
+
 # 📜 Laravel CMS API Documentation
 
 ## 🔗 API Endpoint List
@@ -346,120 +446,3 @@ Delete a category.
 | DELETE /articles/{id}        |   ✅   | ✅ own only, ❌ Admin’s |
 
 ---
-
-## 🚀 Project Setup Instructions
-
-Follow these steps to set up and run the Laravel CMS API on your local system.
-
-### ✅ Requirements
-
-* PHP >= 8.1
-* Composer
-* MySQL or MariaDB
-* Laravel 10
-* Node.js & npm (for optional frontend build)
-
----
-
-### 🔧 Installation Steps
-
-```bash
-# 1. Clone the project
-git clone https://github.com/your-username/laravel-cms-api.git
-
-# 2. Move into project directory
-cd laravel-cms-api
-
-# 3. Install PHP dependencies
-composer install
-
-# 4. Copy the example environment file
-cp .env.example .env
-
-# 5. Generate application key
-php artisan key:generate
-
-# 6. Configure your .env database settings
-# DB_DATABASE=your_database
-# DB_USERNAME=your_username
-# DB_PASSWORD=your_password
-
-# 7. Run migrations
-php artisan migrate
-
-# 8. Seed the database with test users and categories
-php artisan db:seed
-```
-
----
-
-## 🌱 Seeders Created
-
-> These seeders are included to quickly populate the database with roles, users, and some dummy categories/articles for testing.
-
-| Seeder Class                 | Description                                              |
-| ---------------------------- | -------------------------------------------------------- |
-| `RoleSeeder`                 | Seeds roles: `Admin`, `Author`                           |
-| `UserSeeder`                 | Creates one Admin and one Author user                    |
-| `CategorySeeder`             | Seeds some default categories                            |
-| `ArticleSeeder` *(optional)* | Creates sample articles (linked to users and categories) |
-
-You can run all together using:
-
-```bash
-php artisan db:seed
-```
-
-Or run a specific one:
-
-```bash
-php artisan db:seed --class=UserSeeder
-```
-
----
-
-### 👤 Default Users
-
-| Role   | Email                                           | Password |
-| ------ | ----------------------------------------------- | -------- |
-| Admin  | [admin@example.com](mailto:admin@example.com)   | password |
-| Author | [author@example.com](mailto:author@example.com) | password |
-
-You can log in with these users via `/api/login`.
-
----
-
-### ▶️ Run the Development Server
-
-```bash
-php artisan serve
-```
-
-> The API will be available at:
-> `http://127.0.0.1:8000/api`
-
-Use Postman or any API tool to start making requests.
-
----
-
-### 🔪 Optional: Run Tests
-
-```bash
-php artisan test
-```
-
----
-
-### 📁 Storage Link (if needed for file uploads)
-
-```bash
-php artisan storage:link
-```
-
----
-
-## ✅ Ready!
-
-Now your Laravel CMS API project is up and running with seeded roles, users, and categories.
-
-Feel free to explore, extend, and customize it for your own needs!
