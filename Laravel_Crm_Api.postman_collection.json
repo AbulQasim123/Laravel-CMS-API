@@ -1,0 +1,512 @@
+{
+	"info": {
+		"_postman_id": "e25862d4-7a4e-40ca-94e5-99f5c0edc296",
+		"name": "Laravel_Crm_Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24710956",
+		"_collection_link": "https://blue-star-854291.postman.co/workspace/Team-Workspace~468866da-22e2-4eae-8c42-ea8176e5de06/collection/24710956-e25862d4-7a4e-40ca-94e5-99f5c0edc296?action=share&source=collection_link&creator=24710956"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    // \"email\": \"author@example.com\",\r\n    \"email\": \"admin@example.com\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				},
+				"description": "## Login API\n\nThis endpoint allows users to authenticate and log in to the application. It requires an email and password to be provided in the request body.\n\n### Request\n\n- **Method**: POST\n    \n- **URL**: `http://127.0.0.1:8000/api/login`\n    \n- **Content-Type**: application/json\n    \n\n#### Request Body Parameters\n\n- **email** (string): The email address of the user attempting to log in.\n    \n- **password** (string): The password associated with the user's account.\n    \n\n### Response\n\n- **Status Code**: 200 OK\n    \n- **Content-Type**: application/json\n    \n\n#### Response Structure\n\nThe response will contain the following fields:\n\n- **user**: An object containing user information.\n    \n    - **id** (integer): The unique identifier of the user.\n        \n    - **name** (string): The name of the user.\n        \n    - **email** (string): The email of the user.\n        \n    - **email_verified_at** (string|null): The timestamp when the email was verified, if applicable.\n        \n    - **created_at** (string): The timestamp when the user account was created.\n        \n    - **updated_at** (string): The timestamp when the user account was last updated.\n        \n- **message** (string): A message indicating the result of the login attempt.\n    \n- **token_type** (string): The type of token issued (e.g., Bearer).\n    \n- **token** (string): The authentication token to be used for subsequent requests.\n    \n\n### Notes\n\n- Ensure that the email and password are correct to receive a successful response.\n    \n- The token received in the response should be stored securely and used for authenticating future requests."
+			},
+			"response": []
+		},
+		{
+			"name": "profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{author_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profile"
+					]
+				},
+				"description": "## Get User Profile\n\nThis endpoint retrieves the profile information of the authenticated user.\n\n### Request\n\n- **Method**: `GET`\n    \n- **Endpoint**: `http://127.0.0.1:8000/api/profile`\n    \n\n### Response\n\nOn a successful request, the server responds with a `200 OK` status and the following JSON structure:\n\n``` json\n{\n  \"status\": true,\n  \"message\": \"\",\n  \"user\": {\n    \"id\": 0,\n    \"name\": \"\",\n    \"email\": \"\",\n    \"email_verified_at\": null,\n    \"created_at\": \"\",\n    \"updated_at\": \"\"\n  }\n}\n\n ```\n\n#### Response Fields\n\n- **status**: Indicates the success of the request (boolean).\n    \n- **message**: A message related to the status of the request (string).\n    \n- **user**: An object containing user profile information:\n    \n    - **id**: Unique identifier for the user (integer).\n        \n    - **name**: The name of the user (string).\n        \n    - **email**: The email address of the user (string).\n        \n    - **email_verified_at**: Timestamp indicating when the email was verified (nullable).\n        \n    - **created_at**: Timestamp of when the user profile was created (string).\n        \n    - **updated_at**: Timestamp of the last update to the user profile (string).\n        \n\n### Notes\n\n- Ensure that the request is made by an authenticated user to receive the user profile data."
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{author_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"logout"
+					]
+				},
+				"description": "## Logout API\n\nThis endpoint allows a user to log out of their session. Upon successful logout, the user will receive a confirmation response indicating that the logout was successful.\n\n### Request\n\n- **Method**: POST\n    \n- **URL**: `http://127.0.0.1:8000/api/logout`\n    \n\n### Expected Response\n\n- **Status Code**: 200 OK\n    \n- **Content-Type**: application/json\n    \n- **Response Body**:\n    \n    - `status` (boolean): Indicates whether the logout was successful.\n        \n    - `message` (string): A message providing additional context about the logout operation (may be empty).\n        \n\n### Notes\n\n- Ensure that the user is authenticated before attempting to log out.\n    \n- The response will confirm the logout status, allowing the client to handle the session state accordingly."
+			},
+			"response": []
+		},
+		{
+			"name": "store-category",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Computer\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/categories",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "## Add Category\n\nThis endpoint allows you to add a new category to the system.\n\n### Request\n\n- **Method**: `POST`\n    \n- **Endpoint**: `{{url}}/categories`\n    \n- **Request Body**: The request body must be in JSON format and include the following parameter:\n    \n    - `name` (string): The name of the category you wish to add.\n        \n\n#### Example Request Body\n\n``` json\n{\n  \"name\": \"Computer\"\n}\n\n ```\n\n### Response\n\nUpon a successful request, the server will respond with a status code of `200` and the following JSON structure:\n\n- **Status**: `true` (indicates the request was successful)\n    \n- **Message**: An empty string (may contain additional information in future responses)\n    \n- **Data**: An object containing:\n    \n    - `id` (integer): The unique identifier for the newly created category.\n        \n    - `name` (string): The name of the category as provided in the request.\n        \n\n#### Example Response\n\n``` json\n{\n  \"status\": true,\n  \"message\": \"\",\n  \"data\": {\n    \"id\": 0,\n    \"name\": \"\"\n  }\n}\n\n ```\n\n### Notes\n\n- Ensure that the `name` parameter is provided in the request body to successfully create a category.\n    \n- The `id` in the response will reflect the unique identifier assigned to the new category."
+			},
+			"response": []
+		},
+		{
+			"name": "show-category",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/categories/2",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categories",
+						"2"
+					]
+				},
+				"description": "### Endpoint Overview\n\nThis endpoint retrieves details of a specific category identified by its unique ID.\n\n### Request\n\n- **Method**: GET\n    \n- **URL**: `{{url}}/categories/2`\n    \n- **Path Parameter**:\n    \n    - `id` (integer): The unique identifier for the category you wish to retrieve. In this example, the ID is `2`.\n        \n\n### Response\n\n- **Status Code**: 200 OK\n    \n- **Content-Type**: application/json\n    \n- **Response Body**:\n    \n    - `status` (boolean): Indicates the success of the request.\n        \n    - `message` (string): A message providing additional information about the request (if any).\n        \n    - `data` (object): Contains the details of the requested category.\n        \n        - `id` (integer): The ID of the category.\n            \n        - `name` (string): The name of the category.\n            \n\n### Notes\n\n- Ensure that the category ID provided in the request exists in the database to receive a valid response.\n    \n- The response will include a status indicating whether the operation was successful and any relevant messages."
+			},
+			"response": []
+		},
+		{
+			"name": "get-categories",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/categories",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "## Get Categories\n\nThis endpoint retrieves a list of categories available in the system. It is a simple HTTP GET request that does not require any input parameters.\n\n### Request\n\n- **Method**: GET\n    \n- **URL**: `{{url}}/categories`\n    \n\n### Response\n\nOn a successful request, the server responds with a status code of `200` and a JSON object containing the following structure:\n\n- **status** (boolean): Indicates the success of the request.\n    \n- **message** (string): A message providing additional context (usually empty).\n    \n- **data** (array): An array of category objects, where each object contains:\n    \n    - **id** (integer): The unique identifier for the category.\n        \n    - **name** (string): The name of the category.\n        \n\n### Example Response\n\n``` json\n{\n  \"status\": true,\n  \"message\": \"\",\n  \"data\": [\n    {\n      \"id\": 0,\n      \"name\": \"\"\n    }\n  ]\n}\n\n ```\n\nThis endpoint is useful for applications that need to display or utilize the available categories for further operations."
+			},
+			"response": []
+		},
+		{
+			"name": "update-category",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Technology\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/categories/21",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categories",
+						"21"
+					]
+				},
+				"description": "### Update Category\n\nThis endpoint allows you to update an existing category by its unique identifier. In this case, the category with ID `21` is being updated with a new name.\n\n#### Request\n\n- **Method**: PUT\n    \n- **Endpoint**: `{{url}}/categories/21`\n    \n- **Content-Type**: application/json\n    \n\n##### Request Body\n\nThe request body must be in JSON format and include the following parameter:\n\n- **name** (string): The new name for the category. This parameter is required.\n    \n\n**Example Request Body:**\n\n``` json\n{\n    \"name\": \"Technology\"\n}\n\n ```\n\n#### Response\n\nUpon a successful update, the API will return a response with the following structure:\n\n- **Status Code**: 200\n    \n- **Content-Type**: application/json\n    \n\n##### Response Body\n\nThe response will contain the following fields:\n\n- **status** (boolean): Indicates whether the update was successful.\n    \n- **message** (string): A message providing additional information about the request (may be empty).\n    \n- **data** (object): Contains details about the updated category.\n    \n    - **id** (integer): The ID of the category (should match the ID in the request).\n        \n    - **name** (string): The updated name of the category.\n        \n\n**Example Response:**\n\n``` json\n{\n    \"status\": true,\n    \"message\": \"\",\n    \"data\": {\n        \"id\": 21,\n        \"name\": \"Technology\"\n    }\n}\n\n ```\n\nEnsure that the request body is correctly formatted as specified to avoid errors during the update process."
+			},
+			"response": []
+		},
+		{
+			"name": "delete-category",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/categories/22",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categories",
+						"22"
+					]
+				},
+				"description": "## Delete Category\n\nThis endpoint allows you to delete a specific category identified by its unique ID.\n\n### Request\n\n- **Method:** `DELETE`\n    \n- **Endpoint:** `{{url}}/categories/{id}`\n    \n    - **Path Parameter:**\n        \n        - `id` (required): The unique identifier of the category to be deleted.\n            \n\n### Response\n\nUpon successful deletion, the API will return a response with the following attributes:\n\n- **Status Code:** `200 OK`\n    \n- **Content-Type:** `application/json`\n    \n- **Response Body:**\n    \n    - `status` (boolean): Indicates whether the deletion was successful.\n        \n    - `message` (string): A message providing additional context (may be empty).\n        \n\n### Example Response\n\n``` json\n{\n  \"status\": true,\n  \"message\": \"\"\n}\n\n ```\n\nThis response confirms that the category has been successfully deleted."
+			},
+			"response": []
+		},
+		{
+			"name": "store-article",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Top 5 Budget‑Friendly Destinations for Solo Travelers\",\r\n    \"content\": \"Hidden gems offering safety, culture, and affordability for your next adventure.\",\r\n    \"status\": \"Draft\",\r\n    \"published_at\": \"2025-07-13\",\r\n    \"category_ids\": [10]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/articles",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"articles"
+					]
+				},
+				"description": "## Create Article\n\nThis endpoint allows users to create a new article by submitting relevant details. It accepts a JSON payload containing the article's title, content, status, publication date, and associated categories.\n\n### Request Body\n\nThe request must be sent as a JSON object with the following parameters:\n\n- **title** (string): The title of the article.\n    \n- **content** (string): The main content of the article.\n    \n- **status** (string): The current status of the article (e.g., Draft, Published).\n    \n- **published_at** (string): The date when the article is scheduled to be published, formatted as YYYY-MM-DD.\n    \n- **category_ids** (array of integers): An array of category IDs that the article belongs to.\n    \n\n#### Example Request Body\n\n``` json\n{\n  \"title\": \"Top 5 Budget‑Friendly Destinat ...\",\n  \"content\": \"Hidden gems offering safety, c ...\",\n  \"status\": \"Draft\",\n  \"published_at\": \"2025-07-13\",\n  \"category_ids\": [10]\n}\n\n ```\n\n### Response Format\n\nUpon a successful request, the server will respond with a JSON object containing the following fields:\n\n- **status** (boolean): Indicates whether the article was successfully created.\n    \n- **message** (string): A message providing additional information about the request status (can be empty).\n    \n\n#### Example Response\n\n``` json\n{\n  \"status\": true,\n  \"message\": \"\"\n}\n\n ```\n\n### Status Codes\n\n- **200 OK**: The article was created successfully."
+			},
+			"response": []
+		},
+		{
+			"name": "show-articles",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{author_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/articles/6",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"articles",
+						"6"
+					]
+				},
+				"description": "### Get Article by ID\n\nThis endpoint retrieves detailed information about a specific article identified by its unique ID.\n\n#### Request\n\n- **Method**: GET\n    \n- **URL**: `{{url}}/articles/{id}`\n    \n- **Path Parameter**:\n    \n    - `id` (integer): The unique identifier of the article you wish to retrieve.\n        \n\n#### Response\n\n- **Status Code**: 200 OK\n    \n- **Content-Type**: application/json\n    \n- {\"status\": true,\"message\": \"\",\"data\": { \"id\": 0, \"title\": \"\", \"content\": \"\", \"status\": \"\", \"published_at\": \"\", \"slug\": \"\", \"summary\": \"\", \"author\": { \"id\": 0, \"name\": \"\", \"email\": \"\" }, \"categories\": \\[ { \"id\": 0, \"name\": \"\" } \\]}}\n    \n\n#### Response Parameters:\n\n- `status` (boolean): Indicates the success of the request.\n    \n- `message` (string): A message providing additional information about the request status.\n    \n- `data` (object): Contains the details of the article.\n    \n    - `id` (integer): The unique identifier of the article.\n        \n    - `title` (string): The title of the article.\n        \n    - `content` (string): The full content of the article.\n        \n    - `status` (string): The current status of the article (e.g., published, draft).\n        \n    - `published_at` (string): The date and time the article was published.\n        \n    - `slug` (string): A URL-friendly version of the title.\n        \n    - `summary` (string): A brief summary of the article.\n        \n    - `author` (object): Information about the author of the article.\n        \n        - `id` (integer): The unique identifier of the author.\n            \n        - `name` (string): The name of the author.\n            \n        - `email` (string): The email address of the author.\n            \n    - `categories` (array): A list of categories associated with the article.\n        \n        - Each category contains:\n            \n            - `id` (integer): The unique identifier of the category.\n                \n            - `name` (string): The name of the category.\n                \n\n#### Notes:\n\n- Ensure that the `id` parameter is valid and corresponds to an existing article to receive a successful response.\n    \n- The response will provide comprehensive details about the article, including its author and associated categories."
+			},
+			"response": []
+		},
+		{
+			"name": "get-articles",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{author_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/articles",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"articles"
+					]
+				},
+				"description": "## Retrieve Articles\n\nThis endpoint retrieves a list of articles from the server.\n\n### Request\n\n- **Method**: `GET`\n    \n- **Endpoint**: `{{url}}/articles`\n    \n\n### Response\n\n- **Status Code**: `200 OK`\n    \n- **Content-Type**: `application/json`\n    \n\n### Response Body\n\nThe response will return a JSON object with the following structure:\n\n- **status** (boolean): Indicates whether the request was successful.\n    \n- **message** (string): A message providing additional information about the request (if any).\n    \n- **data** (array): An array of article objects, each containing:\n    \n    - **id** (integer): The unique identifier for the article.\n        \n    - **title** (string): The title of the article.\n        \n    - **content** (string): The content of the article.\n        \n    - **status** (string): The current status of the article (e.g., published, draft).\n        \n    - **published_at** (string): The timestamp when the article was published.\n        \n    - **slug** (string): The URL-friendly version of the article title.\n        \n    - **summary** (string): A brief summary of the article.\n        \n    - **author** (object): An object containing information about the author:\n        \n        - **id** (integer): The unique identifier for the author.\n            \n        - **name** (string): The name of the author.\n            \n        - **email** (string): The email address of the author.\n            \n    - **categories** (array): An array of category objects associated with the article, each containing:\n        \n        - **id** (integer): The unique identifier for the category.\n            \n        - **name** (string): The name of the category.\n            \n\n### Example Response\n\n``` json\n{\n  \"status\": true,\n  \"message\": \"\",\n  \"data\": [\n    {\n      \"id\": 0,\n      \"title\": \"\",\n      \"content\": \"\",\n      \"status\": \"\",\n      \"published_at\": \"\",\n      \"slug\": \"\",\n      \"summary\": \"\",\n      \"author\": {\n        \"id\": 0,\n        \"name\": \"\",\n        \"email\": \"\"\n      },\n      \"categories\": [\n        {\n          \"id\": 0,\n          \"name\": \"\"\n        }\n      ]\n    }\n  ]\n}\n\n ```\n\nThis endpoint is useful for fetching articles to display on a website or application."
+			},
+			"response": []
+		},
+		{
+			"name": "update-article",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{author_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Top 5 Budget‑Friendly Destinations for Solo Travelers\",\r\n    // \"title\": \"My articles Updated\",\r\n    \"content\": \"Hidden gems offering safety, culture, and affordability for your next adventure.\",\r\n    \"status\": \"Draft\",\r\n    \"published_at\": \"2025-07-13\",\r\n    \"category_ids\": [23,7]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/articles/6",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"articles",
+						"6"
+					]
+				},
+				"description": "### Update Article\n\nThis endpoint allows you to update an existing article by its ID. The request modifies the article's details such as title, content, status, publication date, and associated categories.\n\n#### Request Parameters\n\nThe request body should be in JSON format and include the following fields:\n\n- **title** (string): The title of the article.\n    \n- **content** (string): The main content of the article.\n    \n- **status** (string): The current status of the article (e.g., Draft, Published).\n    \n- **published_at** (string): The date when the article is scheduled to be published, formatted as YYYY-MM-DD.\n    \n- **category_ids** (array of integers): An array of category IDs associated with the article.\n    \n\n**Example Request Body:**\n\n``` json\n{\n  \"title\": \"Top 5 Budget‑Friendly Destinat ...\",\n  \"content\": \"Hidden gems offering safety, c ...\",\n  \"status\": \"Draft\",\n  \"published_at\": \"2025-07-13\",\n  \"category_ids\": [23]\n}\n\n ```\n\n#### Response\n\nOn a successful update, the response will return a status code of **200** along with a JSON object containing the following fields:\n\n- **status** (boolean): Indicates whether the update was successful.\n    \n- **message** (string): A message providing additional information about the request (if any).\n    \n- **data** (object): Contains the updated article details:\n    \n    - **id** (integer): The ID of the updated article.\n        \n    - **title** (string): The updated title of the article.\n        \n    - **content** (string): The updated content of the article.\n        \n    - **status** (string): The updated status of the article.\n        \n    - **published_at** (string): The updated publication date.\n        \n    - **slug** (string): The URL-friendly version of the title.\n        \n    - **summary** (string): A brief summary of the article.\n        \n    - **author** (object): Information about the article's author:\n        \n        - **id** (integer): The author's ID.\n            \n        - **name** (string): The author's name.\n            \n        - **email** (string): The author's email address.\n            \n    - **categories** (array of objects): The categories associated with the article, each containing:\n        \n        - **id** (integer): The category ID.\n            \n        - **name** (string): The category name.\n            \n\n**Example Response:**\n\n``` json\n{\n  \"status\": true,\n  \"message\": \"\",\n  \"data\": {\n    \"id\": 0,\n    \"title\": \"\",\n    \"content\": \"\",\n    \"status\": \"\",\n    \"published_at\": \"\",\n    \"slug\": \"\",\n    \"summary\": \"\",\n    \"author\": {\n      \"id\": 0,\n      \"name\": \"\",\n      \"email\": \"\"\n    },\n    \"categories\": [\n      {\n        \"id\": 0,\n        \"name\": \"\"\n      }\n    ]\n  }\n}\n\n ```\n\n#### Notes\n\n- Ensure that the article ID in the URL corresponds to an existing article.\n    \n- All fields in the request body are required for a successful update."
+			},
+			"response": []
+		},
+		{
+			"name": "articles-article",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{author_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/articles/5",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"articles",
+						"5"
+					]
+				},
+				"description": "### DELETE /articles/{id}\n\nThis endpoint is used to delete a specific article identified by its unique ID.\n\n#### Request Parameters\n\n- **id** (path parameter): The unique identifier of the article you wish to delete. In this example, the ID is `5`.\n    \n\n#### Expected Response\n\n- **Status Code**: 200 OK\n    \n- **Content-Type**: application/json\n    \n- **Response Body**:\n    \n    - `status` (boolean): Indicates whether the deletion was successful. A value of `true` means the article was successfully deleted.\n        \n    - `message` (string): A message providing additional context about the request. This may be empty.\n        \n\n#### Notes\n\n- Ensure that the ID provided corresponds to an existing article; otherwise, the request may not succeed.\n    \n- Deleting an article is irreversible. Please confirm that you wish to proceed with the deletion before making this request."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		},
+		{
+			"key": "admin_token",
+			"value": "Bearer",
+			"type": "string"
+		},
+		{
+			"key": "author_token",
+			"value": "Bearer 5|JdWfmls1AI2UlQSk9Saiyanowb4TbIKE0KivOAzfd237a9ce",
+			"type": "string"
+		}
+	]
+}
