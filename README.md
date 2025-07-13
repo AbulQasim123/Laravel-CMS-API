@@ -1,4 +1,12 @@
 
+### 🔗 GitHub Repository
+
+[https://github.com/AbulQasim123](https://github.com/AbulQasim123)
+
+### 🌐 Portfolio
+
+[http://13.53.174.4/aboutme/](http://13.53.174.4/aboutme/)
+
 ##  Project Setup Instructions
 ###  This repo contain Database and Postman collection with documentaion
 
@@ -121,10 +129,13 @@ Now your Laravel CMS API project is up and running with seeded roles, users, and
 
 ##  Authentication APIs
 
-### We can integrate All API in Admin Panel
-http://127.0.0.1:8000/my-admin
-username = admin@example.com/author@example.com
-password = password
+### ✅ Admin Panel Access
+
+- **URL**: [http://127.0.0.1:8000/my-admin](http://127.0.0.1:8000/my-admin)  
+- **Usernames**:  
+  - `admin@example.com`  
+  - `author@example.com`  
+- **Password**: `password`
 
 ###  POST `/login`
 
