@@ -1,9 +1,10 @@
 
-## 🚀 Project Setup Instructions
+##  Project Setup Instructions
+###  This repo contain Database and Postman collection with documentaion
 
 Follow these steps to set up and run the Laravel CMS API on your local system.
 
-### ✅ Requirements
+### Requirements
 
 * PHP >= 8.2
 * Composer
@@ -12,7 +13,7 @@ Follow these steps to set up and run the Laravel CMS API on your local system.
 
 ---
 
-### 🔧 Installation Steps
+###  Installation Steps
 
 ```bash
 # 1. Clone the project
@@ -90,13 +91,13 @@ Use Postman or any API tool to start making requests.
 
 ---
 
-## ✅ Ready!
+##  Ready!
 
 Now your Laravel CMS API project is up and running with seeded roles, users, and categories.
 
-# 📜 Laravel CMS API Documentation
+#  Laravel CMS API Documentation
 
-## 🔗 API Endpoint List
+##  API Endpoint List
 
 **Base URL**: `http://127.0.0.1:8000/api`
 
@@ -118,9 +119,9 @@ Now your Laravel CMS API project is up and running with seeded roles, users, and
 
 ---
 
-## 🔐 Authentication APIs
+##  Authentication APIs
 
-### 🔸 POST `/login`
+###  POST `/login`
 
 **Public** – Login and get an access token.
 
@@ -146,7 +147,7 @@ Now your Laravel CMS API project is up and running with seeded roles, users, and
 
 ---
 
-### 🔸 POST `/logout`
+###  POST `/logout`
 
 **Protected** – Logs out the authenticated user.
 
@@ -167,7 +168,7 @@ Authorization: Bearer {token}
 
 ---
 
-### 🔸 GET `/profile`
+###  GET `/profile`
 
 **Protected** – Fetch logged-in user's profile.
 
@@ -183,9 +184,9 @@ Authorization: Bearer {token}
 
 ---
 
-## 📂 Category APIs
+##  Category APIs
 
-🔐 **Only Accessible by Admin**
+ **Only Accessible by Admin**
 
 ### GET `/categories`
 
@@ -233,13 +234,13 @@ Delete a category.
 
 ---
 
-## 📰 Article APIs
+## Article APIs
 
-### 🔸 GET `/articles`
+###  GET `/articles`
 
-🔒 Authenticated
-👤 Admin: View all articles
-👤 Author: View own articles only
+Authenticated
+Admin: View all articles
+Author: View own articles only
 
 **Query Filters (optional):**
 
@@ -274,11 +275,11 @@ Delete a category.
 
 ---
 
-### 🔸 POST `/articles`
+###  POST `/articles`
 
-🔒 Authenticated
-👤 Admin: ✅
-👤 Author: ✅ (assigned as `author_id` automatically)
+Authenticated
+Admin:
+Author: (assigned as `author_id` automatically)
 
 **Request**
 
@@ -303,11 +304,11 @@ Delete a category.
 
 ---
 
-### 🔸 GET `/articles/{id}`
+###  GET `/articles/{id}`
 
-🔒 Authenticated
-👤 Admin: Can view any article
-👤 Author: Can view own articles only
+Authenticated
+Admin: Can view any article
+Author: Can view own articles only
 
 **Unauthorized Response**
 
@@ -320,12 +321,12 @@ Delete a category.
 
 ---
 
-### 🔸 PUT `/articles/{id}`
+###  PUT `/articles/{id}`
 
-🔒 Authenticated
-👤 Admin: Can update any article
-👤 Author: Can update own articles only
-❌ Author cannot update Admin’s articles
+Authenticated
+Admin: Can update any article
+Author: Can update own articles only
+Author cannot update Admin’s articles
 
 **Request**
 
@@ -361,12 +362,12 @@ Delete a category.
 
 ---
 
-### 🔸 DELETE `/articles/{id}`
+###  DELETE `/articles/{id}`
 
-🔒 Authenticated
-👤 Admin: Can delete any article
-👤 Author: Can delete own articles only
-❌ Author cannot delete Admin’s articles
+Authenticated
+Admin: Can delete any article
+Author: Can delete own articles only
+Author cannot delete Admin’s articles
 
 **Unauthorized Response**
 
@@ -388,7 +389,7 @@ Delete a category.
 
 ---
 
-## ⚠️ Common Error Responses
+##  Common Error Responses
 
 ### 401 Unauthorized (no token or invalid)
 
@@ -427,18 +428,18 @@ Delete a category.
 
 ---
 
-## ✅ Role Permissions Summary
+##  Role Permissions Summary
 
 | Endpoint                     | Admin |         Author        |
 | ---------------------------- | :---: | :-------------------: |
-| POST /login                  |   ✅   |           ✅           |
-| POST /logout                 |   ✅   |           ✅           |
-| GET /profile                 |   ✅   |           ✅           |
-| GET/POST/PUT/DEL /categories |   ✅   |           ❌           |
-| GET /articles                | ✅ all |       ✅ own only      |
-| POST /articles               |   ✅   |           ✅           |
-| GET /articles/{id}           |   ✅   |       ✅ own only      |
-| PUT /articles/{id}           |   ✅   |       ✅ own only      |
-| DELETE /articles/{id}        |   ✅   | ✅ own only, ❌ Admin’s |
+| POST /login                  |   ✓   |           ✓           |
+| POST /logout                 |   ✓   |           ✓           |
+| GET /profile                 |   ✓   |           ✓           |
+| GET/POST/PUT/DEL /categories |   ✓   |           ✗           |
+| GET /articles                | ✓ all |       ✓ own only      |
+| POST /articles               |   ✓   |           ✓           |
+| GET /articles/{id}           |   ✓   |       ✓ own only      |
+| PUT /articles/{id}           |   ✓   |       ✓ own only      |
+| DELETE /articles/{id}        |   ✓   | ✓ own only, ✗ Admin’s |
 
 ---
