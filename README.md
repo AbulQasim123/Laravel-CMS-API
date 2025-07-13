@@ -121,7 +121,14 @@ Now your Laravel CMS API project is up and running with seeded roles, users, and
 
 ##  Authentication APIs
 
+### We can integrate All API in Admin Panel
+http://127.0.0.1:8000/my-admin
+username = admin@example.com/author@example.com
+password = password
+
 ###  POST `/login`
+
+
 
 **Public** – Login and get an access token.
 

@@ -33,8 +33,7 @@
                                 <span class="app-brand-logo demo">
                                     {{-- <img src="{{ asset('admin/assets/img/avatars/logo.png') }}"
                                         style="width:40px; border-radius:100%;" /></span> --}}
-                                    <span class="app-brand-text demo menu-text fw-bold ms-2 text-capitalize">Auto
-                                        Inspect</span>
+                                    <span class="app-brand-text demo menu-text fw-bold ms-2 text-capitalize">CMS</span>
                             </a>
                         </div>
 
